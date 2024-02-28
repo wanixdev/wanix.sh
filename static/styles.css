@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+:root {
+    font-size: 16px;
+    --padding-xs: calc(var(--padding) / 4);
+    --padding-s: calc(var(--padding) / 2);
+    --padding: 1rem;
+    --padding-l: calc(var(--padding) * 2);
+    --padding-xl: calc(var(--padding) * 4);
+    --black: oklch(20.27% 0.01 39.3);
+}
+body {
+    font-family: Inter;
+    color: var(--black);
+    /* margin: var(--padding-l) auto; */
+    line-height: 1.5;
+    background-color: oklch(96.79% 0.01 87.52);
+    /* width: 1000px; */
+    margin: var(--padding) 0;
+}
+
+/* GLOBAL -------------------------- */
+h1, h2, h3 { 
+    font-weight: 800;
+    margin-bottom: var(--padding-xs);
+    margin-top: 0;
+    line-height: 1.2;
+    margin-bottom: var(--padding-xs);
+}
+h1 { font-size: 2.4rem;}
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.5rem; }
+
+p { margin: 0 0 var(--padding-s) 0}
+p.small-text { font-size: 0.8rem;}
+
+
+section:not(#video-container), header, div.page {
+    width: 1000px;
+}
+/* so far, this is the only way i know how to target the home page.
+not sure how to set classes on the "page" div container
+so this is meant to override the above page width, for the full width lines */
+div.page:has(#video-container) {
+    width: 100%;
+}
+section, header, div.page {
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+section { margin-bottom: var(--padding-xl); }
+header { margin-bottom: var(--padding-l); }
+div.page { margin-top: 0; margin-bottom: 0;}
+
+html, body {
+    height: 98%; /* because there needs to be room for the header. fix this later. */
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh; /* Viewport height */
+}
+
+.page {
+    flex: 1;
+}
+
+footer {
+    text-align: right;
+    padding: var(--padding) 0;
+}
+
+/* code styles here so they're applied to one-liners.
+hugo seems to apply them automatically in the HTML to multi-line code. */
+pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    color:#f8f8f2;
+    background-color:#272822;
+    -moz-tab-size:4;
+    -o-tab-size:4;
+    tab-size:4;
+}
+
+input, button {
+    padding: var(--padding-s) var(--padding) !important;
+}
+input[type='email'] {
+    width: 30rem;
+}
+
+button {
+    color: white;
+    background-color: var(--black);
+    border: 1px solid black;
+}
+
+
+/* HOMEPAGE -------------------------- */
+.features-section > div {
+    display: flex;
+    gap: var(--padding-s);
+    align-items: flex-start;
+    margin-bottom: var(--padding);
+}
+.plus-bullet {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 0.85; /* to vertically align with text*/
+}
+#features {
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+    gap: var(--padding-l);
+}
+.features-section {
+    flex: 1;
+}
+h2.lined {
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+    line-height: 1.5;
+    margin-bottom: var(--padding-l);
+}
+
+section#video-container {
+    width: 100% !important;
+    display: block;
+    position: relative;
+    background: url('/img/background-lines.svg') no-repeat center center;
+    background-size: 3000px 300px;
+    margin: var(--padding-l) 0 calc(var(--padding-xl) * 2) 0;
+}
+#video-container iframe {
+    display: block;
+    width: 1000px;
+    height: 550px;
+    margin: 0 auto;
+    border: 0;
+}
+section#newsletter p {
+    margin-bottom: var(--padding);
+}
+
+
+/* DOCS and BLOG ----------------------- */
+h1.page-title {
+    margin-bottom: var(--padding-l);
+    border-bottom: 3px solid;
+}
+
+p + h2, pre + h2, ul + h2 { margin-top: var(--padding-xl); }
+p + h3, pre + h3, ul + h3 { margin-top: var(--padding-l); }
+
+pre {
+    padding: var(--padding);
+}
+
+.page > article {
+    margin-bottom: var(--padding-l);
+}
+.article-title a {
+    text-decoration: none;
+    color: var(--black);
+}
+.page:has(.sidebar) {
+    display: flex;
+    flex-direction: row;
+    gap: var(--padding-xl);
+}
+.sidebar {
+    margin-top: 70px; /*to line up with header*/
+    flex-basis: 250px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    /* max-width: 200px; */
+}
+.sidebar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.sidebar li {
+    padding: var(--padding-s) 0;
+}
+.sidebar-main {
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+.sidebar a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+/* top level headers in sidebar */
+nav#TableOfContents > ul > li > a {
+    font-weight: 800;
+}
+/* children headers in sidebar */
+nav#TableOfContents > ul > li >  ul > li > a {
+    font-weight: 600;
+    opacity: 70%;
+}
+
+
+/* HEADER ----------------------------------- */
+hr.thick {
+    height: 4px;
+    background: var(--black);
+    border: 0px solid;
+    margin-block-start: 4px;
+    margin-block-end: 4px;
+}
+
+/* NAV ----------------------------------- */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--padding-xs);
+}
+
+nav.main-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav.main-nav ul li {
+    margin-left: var(--padding-l);
+}
+nav.main-nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 700;
+
+}
+nav.main-nav ul li a:hover {
+    text-decoration: underline;
+}
+nav.main-nav img {
+    height: 20px;
+}
+
+
+

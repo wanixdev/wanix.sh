@@ -1,0 +1,14 @@
+<!-- "active" class doesn't work -->
+<ul>
+    {{ $currentPage := . }}
+    {{ range site.Menus.main }}
+    <li class="{{ if $currentPage.IsMenuCurrent .Menu . }}active{{ end }}">
+        <a href="{{ .URL }}">{{ .Name }}</a>
+     </li>
+    {{ end }}
+    <li>
+        <a href="https://github.com/tractordev/wanix" target=”_blank”>
+            <img src="/img/github-mark.svg">
+        </a>
+     </li>
+</ul>

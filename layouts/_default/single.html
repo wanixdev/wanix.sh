@@ -1,0 +1,11 @@
+{{ define "page" }}
+  <section>
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p id="date"><strong>{{ .Date }}</strong></p>
+    <div>
+      <article id="content">
+        {{ .Content }}
+      </article>
+    </div>
+  </section>
+{{ end }}

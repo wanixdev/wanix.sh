@@ -1,0 +1,15 @@
+{{ define "page" }}
+  
+  <section class="sidebar-main">
+    <h1 class="page-title">{{ .Title }}</h2>
+    <div>
+      <article id="content">
+        {{ .Content }}
+      </article>
+    </div>
+  </section>
+
+  <aside class="sidebar">
+	  {{.TableOfContents}}
+  </aside>
+{{ end }}

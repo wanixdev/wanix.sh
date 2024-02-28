@@ -1,0 +1,10 @@
+{{ define "page" }}
+  <h1 class="page-title">Blog</h1>
+  {{ range .Pages }}
+    <article>
+      <h2 class="article-title"><a href={{ .Permalink }}>{{ .Title }}</a></h2>
+      <p><strong>{{ .Date }}</strong></p>
+      {{ .Summary }}
+    </article>
+  {{ end }}
+{{ end }}
