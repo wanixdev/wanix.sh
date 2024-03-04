@@ -6,7 +6,7 @@ public:
 	hugo
 
 deploy: public
-	git branch -d gh-pages || true
+	git branch -D gh-pages || true
 	git checkout --orphan gh-pages
 	find . -mindepth 1 -maxdepth 1 ! -name public ! -name .git -exec rm -rf {} +
 	mv public/* .
