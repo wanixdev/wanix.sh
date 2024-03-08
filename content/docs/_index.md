@@ -4,7 +4,9 @@ date = 2024-02-14T09:47:30-08:00
 layout = 'docs'
 +++
 
-## Getting started!!
+# Fear is the mind killer
+
+## Getting started
 
 Until a bundled release or live demo is online, you'll need to run Wanix locally as a developer, which means you'll need [Go installed](https://go.dev/doc/install) on your system. Then you can run:
 
