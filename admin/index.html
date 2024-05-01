@@ -1,0 +1,25 @@
+<html>
+<head>
+  <title>wanix.sh admin</title>
+  <style>
+    body {
+      background-color: #101010; 
+      background-image: url(./loading.gif); 
+      background-size: 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+<script src="./wanix-bootloader.js"></script>
+<script type="module">
+  import * as auth from "/auth/api.js";
+  if (!auth.isAuthenticated()) {
+    auth.login();
+  } else {
+    bootWanix();
+  }
+</script>
+</body>
+</html>
