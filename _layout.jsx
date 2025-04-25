@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Wanix</title>
+    <title>Wanix :: Virtual environment kit for the local-first web, inspired by Plan 9</title>
     <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body>
@@ -14,7 +14,7 @@
             </svg>
         </a>
         <div class="nav-container">
-            <p>Web-native Unix-like development environment</p>
+            <p>A virtual environment kit for the local-first web, inspired by Plan 9</p>
             <nav class="main-nav">
                 <ul>
                     <li>
