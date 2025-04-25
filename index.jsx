@@ -1,3 +1,4 @@
+<>
 <section id="video-container">
 <iframe width="900" height="500" style="border:0px solid;" src="https://www.youtube.com/embed/cj8FvNM14T4"></iframe>
 </section>
@@ -8,37 +9,37 @@
     <div class="features-section">
         <div>
             <div class="plus-bullet">+</div>
-            <p>Run and create command line, TUI, and web apps in the environment</p>
+            <p>Capability-oriented microkernel architecture ("everything is a file")</p>
         </div>
         <div>
             <div class="plus-bullet">+</div>
-            <p>Go compiler that runs in-browser, can cross-compile to native platforms</p>
+            <p>Abstract POSIX process model for generalized compute execution</p>
         </div>
         <div>
             <div class="plus-bullet">+</div>
-            <p>Pluggable filesystem API for custom filesystem behavior like FUSE/Plan9</p>
+            <p>Per-process namespaces for security, isolation, and custom environments</p>
         </div>
         <div>
             <div class="plus-bullet">+</div>
-            <p>Unix-like shell that can be live-edited/recompiled or replaced entirely</p>
+            <p>Built-in emulator for x86 support, Linux compatibility, and Docker-like functionality</p>
         </div>
     </div>
     <div class="features-section">
         <div>
             <div class="plus-bullet">+</div>
-            <p>Built-in micro editor, similar to nano</p>
+            <p>Runs in the browser as well as natively on Mac, Windows, and Linux</p>
         </div>
         <div>
             <div class="plus-bullet">+</div>
-            <p>Supports TypeScript and JSX in web applications without extra tooling</p>
+            <p>Web: File interfaces for OPFS, DOM, web workers, and service workers</p>
         </div>
         <div>
             <div class="plus-bullet">+</div>
-            <p>Authentication using <a href="https://auth0.com/">Auth0</a> for deploying as a "backend" to static site</p>
+            <p>Web: Runs WASI WebAssembly and x86 executables</p>
         </div>
         <div>
-            <div class="plus-bullet">+</div>
-            <p>GitHub filesystem for directly manipulating repository branches</p>
+            {/* <div class="plus-bullet">+</div>
+            <p>GitHub filesystem for directly manipulating repository branches</p> */}
         </div>
     </div>
 </div>
@@ -47,40 +48,91 @@
 <section>
 <h2 class="lined">Quick Start</h2>
 
-<h3>Install</h3>
-<p>The Wanix CLI is available for download from the <a href="https://github.com/tractordev/wanix/releases/latest">latest release</a> or you can run this installer:</p>
-<pre>bash -c "$(curl -sSL https://raw.githubusercontent.com/tractordev/wanix/main/install.sh)"</pre>
-<p>Alternatively you can install using <a href="https://brew.sh/">Homebrew</a>:</p>
-<pre><code>brew tap progrium/homebrew-taps
-brew install wanix</code></pre>
+<h3>Try Now</h3>
+<p>Play with the stock Wanix distro at <a href="https://wanix.run">wanix.run</a></p>
 
-<h3>Usage</h3>
-<pre><code>{`wanix [command]
+<h3>Install Toolchain</h3>
+<p>The Wanix CLI is available for download from the <a href="https://github.com/tractordev/wanix/releases/latest">latest release</a>:</p>
 
-Available Commands:
-dev              start wanix dev server
-bootfiles        write out wanix boot files
-deploy           deploy Wanix static site to GitHub Pages
+<pre>{`bash -c "$(curl -sSL https://raw.githubusercontent.com/tractordev/wanix/main/install.sh)"`}</pre>
 
-Flags:
--v    show version
+On Mac, you can install using <a href="https://brew.sh/">Homebrew</a>:
 
-Use "wanix [command] -help" for more information about a command.`}</code></pre>
-    
-<h4>wanix dev</h4>
-<p>This runs a local dev server you can access in the browser. At the moment, it needs to be run in a checkout of this repository and will make it available from within the environment at <code>/sys/dev</code>.</p>
+<pre>
+{`brew tap progrium/homebrew-taps
+brew install wanix`}
+</pre>
 
-<h4>wanix bootfiles</h4>
-<p>This will write out the 3 files necessary to manually set up a page to load Wanix. To boot Wanix on a page just include these lines:</p>
 
-<pre><code>{`&lt;script src="./wanix-bootloader.js"&gt;&lt;/script&gt;
-&lt;script&gt;bootWanix()&lt;/script&gt;`}</code></pre>
+<h3>Toolchain Usage</h3>
+<p>The <code>wanix</code> command has a number of subcommands in development, but the primary
+command is <code>wanix serve</code>, which will serve Wanix at <code>http://localhost:7654</code>.</p>
 
-<h4>wanix deploy</h4>
-<p>This will set up a static site on a domain you provide using GitHub Pages. It will create a repository and set everything up for you. You can optionally have it set up authentication with the `--enable-auth` flag. This will configure <a href="https://auth0.com/">Auth0</a> for you to be able to login with GitHub. When logged in, Wanix will mount the GitHub repository for the site itself at `/repo`, which you can use to modify the site from itself using Wanix.</p>
+<p>There is a <code>--listen</code> flag to change the port and optionally the address to listen
+on. This will serve on port 6543: <code>wanix serve --listen :6543</code></p>
 
-<h3>Next steps</h3>
-Continue the tutorial and see what else you can do in our <a href="/docs">documentation</a>.
+
+<h3>Using the Wanix Environment</h3>
+
+<h4>Add Files</h4>
+
+<p>You can easily add files to the Wanix environment by dragging files onto the
+terminal. This will put them in <code>/web/opfs</code>.</p>
+
+<p>In Chrome, you can also use the <code>pickerfs</code> capability to mount a full directory
+in Wanix for the duration of your session. Run <code>id=$(capctl new pickerfs mount)</code>
+to bring up a directory picker. The resulting <code>id</code> can be used to get to the
+mount: <code>cd /cap/$id/mount</code>.</p>
+
+<p>Lastly, you can mount a tar or gzipped tar from a URL with the <code>tarfs</code>
+capability using the same process as <code>pickerfs</code> but with
+<code>capctl new tarfs mount &lt;url&gt;</code>.</p>
+
+<h4>Run WASI</h4>
+
+<p>WASI Wasm executables can simply be run like running a normal executable once
+added to the environment. Tested languages that can compile to Wasm
+and run in Wanix include Golang, Rust, and Zig.</p>
+
+<h4>Load Page in Window</h4>
+
+<p>Files in the root namespace can be accessed via subpaths on the domain with the
+prefix <code>/: </code>, so accessing <code>/web/opfs/file.html</code> would work using
+<code>/:/web/opfs/file.html</code>. This works for any HTML elements or JS functions that
+take a URL, including fetch and iframes.</p>
+
+<p>We use iframes as windows (by styling and JS), which can be created with:</p>
+
+<pre><code>{`id=$(domctl new iframe)
+domctl body append-child $id`}</code></pre>
+
+<p>Then you can load a URL in the iframe by setting its <code>src</code> attribute:</p>
+
+<pre><code>{`echo src=/:/web/opfs/file.html >> /web/dom/$id/attrs`}</code></pre>
+
+<p>You can "close" a window by removing the iframe:</p>
+
+<pre><code>{`domctl $id remove`}</code></pre>
+
+<h4>Run JS in a Web Worker</h4>
+
+<p>If you have a JavaScript source file you want to run in a Web Worker, you can
+use <code>workerctl start &lt;file&gt;</code>, which returns a resource ID you can use under
+<code>/web/worker</code>.</p>
+
+<p>You can terminate the worker with <code>workerctl &lt;id&gt; terminate</code>.</p>
+
+<h4>Manipulate DOM</h4>
+
+<p>You can currently create DOM elements using <code>domctl</code>. Run <code>domctl new</code> to see
+available element types. For example, you can allocate a div element and get a
+resource ID for it with <code>domctl new div</code>. DOM resources are under <code>/web/dom</code>,
+including a named resource for the <code>body</code>.</p>
+
+<p>You can also append CSS styles to the page by appending to <code>/web/dom/style</code>:</p>
+
+<pre><code>{`echo "html { border: 8px solid lightgreen; }" >> /web/dom/style`}</code></pre>
+
 </section>
 
 <section id="newsletter">
@@ -90,3 +142,4 @@ Continue the tutorial and see what else you can do in our <a href="/docs">docume
     <button>Join sponsors</button>
 </a>
 </section>
+</>
