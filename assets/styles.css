@@ -83,6 +83,10 @@ pre {
     -o-tab-size:4;
     tab-size:4;
 }
+code:not(pre code) {
+    font-weight: 600;
+}
+
 
 input, button {
     padding: var(--padding-s) var(--padding) !important;
