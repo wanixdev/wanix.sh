@@ -17,7 +17,7 @@ jobs:
           check-latest: true
 
       - name: Install Taragen
-        run: go install github.com/progrium/taragen/cmd/taragen@debug
+        run: go install github.com/progrium/taragen/cmd/taragen@main
 
       - name: Build
         run: |
