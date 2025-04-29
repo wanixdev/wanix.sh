@@ -52,10 +52,8 @@
 <p>Play with the stock Wanix distro at <a href="https://wanix.run">wanix.run</a></p>
 
 <h3>Install Toolchain</h3>
-<p>The Wanix CLI is available for download from the <a href="https://github.com/tractordev/wanix/releases/latest">latest release</a>:</p>
-
-<pre>{`bash -c "$(curl -sSL https://raw.githubusercontent.com/tractordev/wanix/main/install.sh)"`}</pre>
-
+<p>The Wanix CLI is available for download from the <a href="https://github.com/tractordev/wanix/releases/latest">latest release</a>.</p>
+    
 On Mac, you can install using <a href="https://brew.sh/">Homebrew</a>:
 
 <pre>
@@ -66,10 +64,7 @@ brew install wanix`}
 
 <h3>Toolchain Usage</h3>
 <p>The <code>wanix</code> command has a number of subcommands in development, but the primary
-command is <code>wanix serve</code>, which will serve Wanix at <code>http://localhost:7654</code>.</p>
-
-<p>There is a <code>--listen</code> flag to change the port and optionally the address to listen
-on. This will serve on port 6543: <code>wanix serve --listen :6543</code></p>
+command is <code>wanix serve</code>.</p>
 
 
 <h3>Using the Wanix Environment</h3>
@@ -83,10 +78,6 @@ terminal. This will put them in <code>/web/opfs</code>.</p>
 in Wanix for the duration of your session. Run <code>id=$(capctl new pickerfs mount)</code>
 to bring up a directory picker. The resulting <code>id</code> can be used to get to the
 mount: <code>cd /cap/$id/mount</code>.</p>
-
-<p>Lastly, you can mount a tar or gzipped tar from a URL with the <code>tarfs</code>
-capability using the same process as <code>pickerfs</code> but with
-<code>capctl new tarfs mount &lt;url&gt;</code>.</p>
 
 <h4>Run WASI</h4>
 
