@@ -53,13 +53,6 @@
 
 <h3>Install Toolchain</h3>
 <p>The Wanix CLI is available for download from the <a href="https://github.com/tractordev/wanix/releases/latest">latest release</a>.</p>
-    
-On Mac, you can install using <a href="https://brew.sh/">Homebrew</a>:
-
-<pre>
-{`brew tap progrium/homebrew-taps
-brew install wanix`}
-</pre>
 
 
 <h3>Toolchain Usage</h3>
